@@ -31,9 +31,10 @@
 button {
 	display: block;
 	font-size: 18px;
-	width: 250px;
+	width: 20%;
 	height: 40px;
-	margin: 20px 220px 0;
+	margin-left:40% ;
+	margin-right: 40%;
 	background-color: #014400;
 	box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08), inset 0 1px 0 #81a92c;
 	border-radius: 10px;
@@ -46,7 +47,7 @@ button {
 }
 
 button:active {
-	background-color: #00a008;
+	background-color: #007506;
 	box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08), inset 0 1px 0 #81a92c;
 	transform: scale(0.99);
 }
