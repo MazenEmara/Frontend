@@ -1,0 +1,64 @@
+.FormGroup {
+	margin: 0 105px 20px;
+	padding: 0;
+	border-style: none;
+	background-color: #426cf6;
+	will-change: opacity, transform;
+	box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08), inset 0 1px 0 #426cf6;
+	border-radius: 10px;
+	width: 500px;
+	height: 40px;
+}
+
+.FormRow {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	margin-left: 15px;
+	border-top: 1px solid #426cf6;
+}
+
+.StripeElement--webkit-autofill {
+	background: transparent !important;
+}
+
+.StripeElement {
+	width: 100%;
+	padding: 11px 15px 11px 0;
+}
+
+button {
+	display: block;
+	font-size: 18px;
+	width: 20%;
+	height: 40px;
+	margin-left:40% ;
+	margin-right: 40%;
+	background-color: #014400;
+	box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08), inset 0 1px 0 #81a92c;
+	border-radius: 10px;
+	color: rgb(38, 30, 30);
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 100ms ease-in-out;
+	will-change: transform, background-color, box-shadow;
+	border: none;
+}
+
+button:active {
+	background-color: #007506;
+	box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08), inset 0 1px 0 #81a92c;
+	transform: scale(0.99);
+}
+
+.App {
+	margin-left: 25%;
+	margin-top: 5%;
+	margin-right: 25%;
+}
+
+h1,
+h3 {
+	text-align: center;
+}
