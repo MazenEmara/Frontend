@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+
+:root {
+  --line-border-fill: #4dda56;
+  --line-border-empty: #e0e0e0;
+}
+
+
+
+
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  background: #F3F4F6;
+  font-family: "Rubik", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+
+.container {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.progress-container::before {
+  content: "";
+  background: var(--line-border-empty);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 100%;
+  z-index: -1;
+}
+
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 30px;
+  max-width: 100%;
+  width: 750px;
+}
+
+
+.progress {
+  background: var(--line-border-fill);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 1%;
+  z-index: -1;
+  transition: 0.4s ease;
+}
+
+
+.circle {
+  background: #fff;
+  color: #999;
+  border-radius: 50%;
+  height: 75px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--line-border-empty);
+  transition: .4s ease;
+}
+
+
+
+.circle.de {
+  border-color: red;
+}
+
+.circle.active {
+  border-color: var(--line-border-fill);
+}
+
+
+/* CSS */
+.button-88 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 500;
+  width: 20%;
+  margin-left: 40%;
+  margin-right: 40%;
+  align-self: center;
+  align-content: center;
+  font-size: 16px;
+  padding: 0.7em 1.4em 0.7em 1.1em;
+  color: white;
+  background: linear-gradient(0deg, rgb(199, 45, 45) 0%, rgb(200, 54, 54) 100%);
+  border: none;
+  box-shadow: 0 0.7em 1.5em -0.5em #a7141498;
+  letter-spacing: 0.05em;
+  border-radius: 20em;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-88:hover {
+  box-shadow: 0 0.5em 1.5em -0.5em #a7141498;
+}
+
+.button-88:active {
+  box-shadow: 0 0.3em 1em -0.5em #a7141498;
+}
