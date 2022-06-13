@@ -6,6 +6,7 @@ const OrderSchema = new Schema({
         type: String,
         required : true
     },
+    address: String,
     orderedproducts: [{
         type: Schema.Types.ObjectId,
         ref: 'product'
@@ -18,6 +19,7 @@ const OrderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref : 'Shipping'
     },
+    totalPrice:Number
 },
 {collection:"order"},{timestamps: true});
 module.exports = Order = mongoose.model('order',OrderSchema);

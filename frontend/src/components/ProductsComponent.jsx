@@ -5,7 +5,7 @@ import { useCart } from "react-use-cart";
 
 const CardComponent = (props) => { 
     
-
+    const [disable, setDisable] = React.useState(false);
     const {onClick, ...item} = props;
     return (
     <div className="col-xl-2 col-lg-3 col-md-4 col-6">
@@ -19,7 +19,8 @@ const CardComponent = (props) => {
                 <div className="price mt-1">{props.price} EGP</div>
                 <div className="description"></div>
                 {/* <IncDecCounter />  */}
-            <button className="btn btn-outline-success" type="button" onClick={e =>onClick({...item,quantity:1})} > Add to Cart </button>
+                {!props.quantity && <button className="btn btn-outline-success" type="button" disabled={true} > Add to Cart </button>}
+            {props.quantity && <button className="btn btn-outline-success" type="button" onClick={e =>onClick({...item,quantity:1})} > Add to Cart </button>}
             </figcaption>
         </div>
     </div>
@@ -82,9 +83,6 @@ function ProductsComponent(props) {
 
     
     useEffect( () => {
-        // item.quantity
-        // const name = searchParams.get('name')
-        // const src = searchParams.get('src')
         var url = search === "products"? `http://localhost:3000/products?page=${page}` :`http://localhost:3000/product/${search}?page=${page}` 
         fetch(url, {
         "method": "GET"
