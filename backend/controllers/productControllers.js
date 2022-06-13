@@ -21,7 +21,9 @@ module.exports.post_product = async (req,res) => {
         Price: req.body.Price,
         weight: req.body.weight,
         description: req.body.description,
-        quantity: req.body.quantity
+        quantity: req.body.quantity,
+        image: req.body.image,
+        category: req.body.category
     });
     try {
         const newProducts2 =  await newProduct.save()

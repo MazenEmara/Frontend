@@ -1,38 +1,13 @@
 import React, {Component, useState, useEffect} from "react";
 import { ObjectID } from 'bson';
+import{Link} from "react-router-dom"
 import OrderDataService from "../services/rabbit";
 
 const axios = require ("axios");
 const arr= [];
 
-
-async function CheckDel(orderid) {
-    var url = 'http://localhost:3000/orders' + orderid;
-    axios.get(url).then(function (result) {
-        see(result.data);
-    });
-
-    async function see(data) {
-        console.log(data[0].Status);
-        if (data[0].Status === 'PROCESSING') {
-            
-            setTimeout(() => {
-                CheckDel(orderid);
-            }, 5000);
-        } else if (data[0].Status === 'FULFILLED') {
-            setTimeout(() => {
-                CheckDel(orderid);
-            }, 5000);
-        } else if (data[0].Status === 'CANCELED') {
-        } else {
-            setTimeout(() => {
-                CheckDel(orderid);
-            }, 5000);
-        }
-    }
-}
 const CardComponent = (props) => { 
-
+     var path = "/shipping/?id=" + props.orderedShipping;
     return (
     <div className="col-xl-2 col-lg-3 col-md-4 col-6">
         <div className="card card-sm card-product-grid">
@@ -43,7 +18,10 @@ const CardComponent = (props) => {
                 <div className="title text-dark">Status: {props.Status}</div>
                 <div className="title text-dark">Address: {props.address}</div>
                 <div className="title text-dark">Total Price: {props.totalPrice}</div>
-                <button className="btn btn-outline-success" type="button">View Shipping Status</button>
+                <Link to={path}>
+                    <button className="btn btn-outline-success" type="button" >View Shipping Status</button>
+                    <div className="description"></div>
+                </Link>
                 <div className="description"></div>
             </figcaption>
         </div>
@@ -72,8 +50,10 @@ const Order = props => {
             console.log(e);
           });
       };
-      console.log(orders);
+      //console.log(orders);
 
+      
+        
     return(
         <div>
             <div className="row pt-3">

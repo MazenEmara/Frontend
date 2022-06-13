@@ -8,7 +8,9 @@ import HomeComponent from './components/HomeComponent';
 import ProductsComponent from './components/ProductsComponent';
 import Order from './components/OrderComponent';
 import Cart from './components/CartComponent';
+import StripeContainer from './components/StripeContainer';
 import React, {Component, useState, useEffect} from "react";
+import Shipping from './components/shippingComponent';
 
 class App extends Component {
 
@@ -84,6 +86,8 @@ class App extends Component {
         <Route exact path='/products'><ProductsComponent pages = {10} get_items={this.get_items} change_item={this.change} /></Route>
         <Route exact path='/' component={HomeComponent}></Route>
         <Route exact path='/cart' render={(props)=> (<Cart {...props} order={Order}/>)}><Cart items={this.state.cart} /></Route>
+        <Route exact path='/checkout'><StripeContainer /></Route>
+        <Route path='/shipping'><Shipping/></Route>
       </Switch>
       </Router>
     <FooterComponent />

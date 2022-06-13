@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { ObjectID } from 'bson';
+import { Link } from "react-router-dom";
+const axios = require("axios")
 
 function Cart(props) {
+    const handleClick = event => {
+        removeelement()
+      }; 
+    //   const [disable, setDisable] = React.useState(false);
+    // const [message, setMessage] = useState('');
 
-    const [message, setMessage] = useState('');
-
-
-
+    // var total2;
+    // var total1 = totalprice();
+    //console.log(total1);
     const postOrder = (e) => {
         e.preventDefault();
         var products = [];
@@ -35,24 +41,32 @@ function Cart(props) {
                 totalPrice: totalprice()
             })
         })
-        alert("Order placed successfully");
+        axios.post('http://localhost:3000/shipping/add', {
+            orderedShipping: shipid,
+        });
+       
+        var url = 'http://localhost:3000/shipping/up1/' + shipid;
+        axios.patch(url);
+        url = 'http://localhost:3000/shipping/up2/' + shipid;
+        axios.patch(url);
+        // alert("Order placed successfully");
     }
-    function totalprice() {
-        var total = 0;
-        for (let index = 0; index < (props.items).length; index++) {
-            total += (props.items[index].price);
-        }
-        return total;
-    }
-    function handleChange2 (event) {
-        setMessage(event.target.value);
-        if(event.target.value == "AmrD50"){
-             totalprice = totalprice-2;
-        }
+    // function handleChange2 (event) {
+    //     setMessage(event.target.value);
+    //     if(document.getElementById("message").value == "AmrD50"){
+    //          total1 = total1-2;
+    //         // console.log(total1);
+    //     }
+    //     console.log(total1);
+    //     componentDidUpdate()
     
         //console.log('value is:', event.target.value);
-      };
-
+   //   };
+//////////////////////////////////////////////////////////////////////////////
+// function componentDidUpdate() {
+//     console.log("Updating!");
+//     }
+    
     function removeelement(name2) {
         document.getElementById(name2).remove();
         for (let index = 0; index < (props.items).length; index++) {
@@ -60,11 +74,24 @@ function Cart(props) {
                 (props.items).splice(index, 1);
             }
         }
-        //totalprice = totalprice- name2.Price;
+        //total2 = total1- name2.Price;
+        //componentDidUpdate()
     }
     
+    function totalprice() {
+        var total = 0;
+        for (let index = 0; index < (props.items).length; index++) {
+            total += (props.items[index].price);
+        }
+        return total;
+    }
+    // function refreshPage() {
+    //     window.location.reload(false);
+    //   }
+
     const listItems = props.items.map((link) =>
-        <div className="col-xl-2 col-lg-3 col-md-4 col-6">
+        <div className="col-xl-2 col-xl-3 col-md-4 col-6">
+            <div className="card card-sm card-product-grid">
             <div id={link.name} className="card card-sm card-product-grid">
                 <a className="img-wrap"> <img key={link.image} src={`${link.image}`} /></a>
                 <figcaption className="info-wrap">
@@ -73,20 +100,23 @@ function Cart(props) {
                     <div key={link.price} id="pricee" className="price mt-1">{link.price} EGP</div>
                     <div className="col-x2-2">
                         <div className="input-group">
-                            <button id={link.name} className="btn btn-outline-danger" type="button" onClick={() => removeelement(link.name)} class2="btn btn-success">Remove</button>
+                            <button id={link.name} className="btn btn-outline-danger" type="button" onClick={() => removeelement(link.name) } class2="btn btn-success">Remove</button>
                         </div>
                     </div>
                 </figcaption>
             </div>
         </div>
+        </div>
     );
-    
+
     return (
         <div onLoad={() => document.getElementById("totalprice").value = totalprice()} id="test">
             <section className="container">
                 <div className="judul">
                     <h4>Shopping Cart</h4>
+                    <div className="row pt-3">
                     {listItems}
+                    </div>
                 </div>
                 <div className="row justify-content-center">
                     <div className="row">
@@ -113,11 +143,14 @@ function Cart(props) {
                                     <br></br>
                                     <h6>Address</h6>
                                     <input id="address" placeholder="Enter Your Address" required />
-                                    <h6>Add promo code(optional)</h6>
+                                    <button onClick={postOrder} type="button" className="btn btn-success check btn-sm">confirm</button>
+                                    {/* <h6>Add promo code(optional)</h6>
                                     <input type="text" placeholder="Enter Promo Code" id="message" name="message" onChange={handleChange2} value={message}/>
-                                    <button type="button" onclick={""} className="btn btn-success check btn-sm">ADD</button>
+                                    <button type="button" onclick={handleChange2} className="btn btn-success check btn-sm">ADD</button> */}
                                     <br></br>
-                                    <button onClick={postOrder} type="button" className="btn btn-primary check">GO TO CHECKOUT</button>
+                                    <a href="/checkout" target="_self">
+                                    <button type="button" className="btn btn-primary check">GO TO CHECKOUT</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
